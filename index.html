@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My experiment</title>
+    <script src="https://unpkg.com/jspsych@7.3.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey@0.2.1"></script>
+    <link href="https://unpkg.com/jspsych@7.3.1/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <link href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css" rel="stylesheet" />
+</head>
+
+<body></body>
+<script>
+    /* initialize jsPsych */
+    const jsPsych = initJsPsych({
+        on_finish: function () {
+            jsPsych.data.displayData();
+        }
+    });
+    
+
+    var timeline = [];
+
+    var trial = {
+        type: jsPsychSurvey,
+        pages: [
+            [
+                {
+                    type: 'html',
+                    prompt: '<p style="color: red;">以下の質問を読んで回答してください。ここに画像だったりを貼り付けることもできる。</p>',
+                },
+                {
+                    type: 'likert',
+                    prompt: 'これがlikert',
+                    likert_scale_min_label: 'めっちゃ使えそう！',
+                    likert_scale_max_label: '全然使えなさそう。',
+                    required: true,
+
+                },
+                {
+                    type: 'likert-table',
+                    prompt: 'これがlikert-table',
+                    statements: [
+                        { prompt: 'htmlは使えそうだと思う。', name: 'html' },
+                        { prompt: 'drop-downは使えそうだと思う。', name: 'drop-down' },
+                        { prompt: 'likertは使えそうだと思う', name: 'likert' },
+
+                    ],
+
+                    options: ['全然使えなさそう', '使えなさそう。', 'どちらでもない', '使えそう', 'めっちゃ使えそう'],
+                }],
+            [
+                {
+                    type: 'drop-down',
+                    prompt: 'これがdrop-downや',
+                    options: ["A", "B"]
+                },
+                {
+                    type: 'ranking',
+                    prompt: "使えそうな順番に並び替えてください。",
+                    options: ['drop-down', 'likert', 'likert-table', 'ranking']
+                },
+                {
+                    type: 'text',
+                    prompt: "好きな色を回答してください。",
+                    input_type: "color"
+                }
+            ]
+        ],
+        show_question_numbers: "on",
+        title: "タイトルだよー"
+    };
+
+
+
+
+    timeline.push(trial);
+    jsPsych.run(timeline);
+
+
+
+</script>
+
+</html>
