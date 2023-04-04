@@ -18,7 +18,6 @@
             jsPsych.data.displayData();
         }
     });
-    
 
     var timeline = [];
 
@@ -34,8 +33,7 @@
                     type: 'likert',
                     prompt: 'これがlikert',
                     likert_scale_min_label: 'めっちゃ使えそう！',
-                    likert_scale_max_label: '全然使えなさそう。',
-                    required: true,
+                    likert_scale_max_label: '全然使えなさそう。'
 
                 },
                 {
@@ -72,14 +70,10 @@
         title: "タイトルだよー"
     };
 
-
-
-
     timeline.push(trial);
     jsPsych.run(timeline);
 
-
-
 </script>
+
 
 </html>
